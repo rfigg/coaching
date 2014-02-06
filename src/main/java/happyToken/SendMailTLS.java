@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class SendMailTLS {
 	//found on the internet, modified to throw specific exception.
  
-	public static void mail() throws MessagingException {
+	public static void mail(String recipients) throws MessagingException {
  
 		final String username = "AKIAJPUONETKTELBXHDA";
 		final String password = "AmnfeoX7p4oiURAQVJ4sRH78smHue1ClxqLYIyjGFGOY";
@@ -30,22 +30,16 @@ public class SendMailTLS {
 				return new PasswordAuthentication(username, password);
 			}
 		  });
- 
-		// try {
- 
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("ryan.figg@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("ryan.figg@gmail.com"));
-			message.setSubject("Email test");
-			message.setText("Yay! My tokens are happy!!");
- 
-			Transport.send(message);
- 
-			System.out.println("Email sent!");
- 
-		// } catch (MessagingException e) {
-		// 	throw new RuntimeException(e);
-		// }
+  
+		Message message = new MimeMessage(session);
+		message.setFrom(new InternetAddress("ryan.figg@gmail.com"));
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
+		message.setSubject("Happy Token News");
+		message.setText("Yay! My tokens are happy!!");
+
+		Transport.send(message);
+
+		System.out.println("Email sent!");
+
 	}
 }

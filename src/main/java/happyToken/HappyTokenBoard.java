@@ -117,7 +117,7 @@ public class HappyTokenBoard {
 		//email code
 		// System.out.println("*** Emailing Janelle. But not really. Yet. ***");
 		try {
-			SendMailTLS.mail();
+			SendMailTLS.mail("ryan.figg@gmail.com");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,7 +171,7 @@ abstract class HappyTokenPosition {
 
 class Token {
 	// should this be a factory class?
-	// public static Token getToken(TokenColor c){return new Token(c);}?
+	// public static Token makeToken(TokenColor c){return new Token(c);}?
 	private TokenColor color;
 
 	public Token(TokenColor c) { 
