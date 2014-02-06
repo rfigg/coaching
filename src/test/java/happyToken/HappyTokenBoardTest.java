@@ -17,9 +17,12 @@ public class HappyTokenBoardTest {
 		// test board creation
 		HappyTokenBoard myBoard = new HappyTokenBoard();
 
-		// test bad token adds
-		assertEquals("Should not be able to add token", false, myBoard.addTokenToPosition(TokenColor.BLACK, 5));
+		// test bad token adds, boundaries and out there
+		assertEquals("Should not be able to add token", false, myBoard.addTokenToPosition(TokenColor.BLACK, 3));
 		assertEquals("Should not be able to add token", false, myBoard.addTokenToPosition(TokenColor.WHITE, -1));
+		assertEquals("Should not be able to add token", false, myBoard.addTokenToPosition(TokenColor.BLACK, -10));
+		assertEquals("Should not be able to add token", false, myBoard.addTokenToPosition(TokenColor.BLACK, 7));
+
 		System.out.println(Arrays.toString(myBoard.viewStatus()));
 		
 		// test empty board

@@ -8,6 +8,7 @@ enum TokenColor {
 	private TokenColor(String n) {
 		name = n;
 	}
+	@Override
 	public String toString() {
 		return name;
 	}
@@ -84,6 +85,7 @@ public class HappyTokenBoard {
 		}
 	}
 
+	@Override
 	public String toString() {
 		//return ("EVERYTHING IS WORKING GREAT!!!!!!!!!!!\nLY.");
 		String status = "";
@@ -97,11 +99,9 @@ public class HappyTokenBoard {
 		// returning an array of token color counts, black then white for each position, -1 terminated
 		// receiver can infer number of positions or look for -1
 		int[] status = new int[POSITION_COUNT * 2 + 1];
-		int i = 0;
-		while (i < POSITION_COUNT) {
+		for (int i = 0; i < POSITION_COUNT; i++) {
 			status[i*2]   = positions[i].getCount(TokenColor.BLACK);
-			status[i*2+1] = positions[i].getCount(TokenColor.WHITE);
-			i++;
+			status[i*2+1] = positions[i].getCount(TokenColor.WHITE);	
 		}
 		status[POSITION_COUNT*2] = -1;
 		return status;
@@ -126,7 +126,7 @@ public class HappyTokenBoard {
 
 abstract class HappyTokenPosition {
 	//protected so anonymous subclasses can access from abstract method implementation
-	protected ArrayList<Token> tokens = new ArrayList<>();
+	protected ArrayList<Token> tokens = new ArrayList<>(); // could change to List<Token> on left
 
 	//need constructor? think not
 	
@@ -152,6 +152,7 @@ abstract class HappyTokenPosition {
 
 	public abstract boolean addToken(TokenColor c);
 
+	@Override
 	public String toString() {
 		if (tokens.isEmpty()){
 			return "Empty position.";
